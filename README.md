@@ -1,2 +1,2 @@
 # Charity Blockchain System 2.0
-下载[Node.js](https://nodejs.org/en). 用VS Code打开Charity Blockchain System 2.0，
+下载[Node.js](https://nodejs.org/en) (20.11.0 LTS即可)。下载好之后右键此电脑，点击属性，点击高级系统设置，点击高级，点击环境变量，在系统变量那里找到Path，双击Path，新建Node.js的路径 (一般是C:\Program Files\nodejs\)。完成之后打开终端输入node -v以及npm -v，如果出现版本号证明安装成功。用VS Code打开Charity Blockchain System 2.0. 输入npm install，输入npm start，输入Y。打开终端，输入cd Charity-Blockchain-System-2.0，输入cd server，输入node server.js。在打开的http://localhost:3000页面当中，在Login Page输入账号HowAreYou以及密码IAmFine进入账号 (注意大小写)。
