@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -29,9 +29,8 @@ const ByteCoinHeading = styled.h1`
   margin-bottom: 20px;
 `;
 
-
 const TotalRaised = styled.h2`
-  color: #4CAF50;
+  color: #4caf50;
   margin-bottom: 10px;
 `;
 
@@ -58,9 +57,9 @@ const TableRow = styled.div`
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
   padding: 15px;
-  background-color: ${(props) => (props.isHeader ? '#282c34' : 'white')};
-  color: ${(props) => (props.isHeader ? 'white' : 'inherit')};
-  font-weight: ${(props) => (props.isHeader ? 'bold' : 'normal')};
+  background-color: ${(props) => (props.isHeader ? "#282c34" : "white")};
+  color: ${(props) => (props.isHeader ? "white" : "inherit")};
+  font-weight: ${(props) => (props.isHeader ? "bold" : "normal")};
 `;
 
 const TableCell = styled.div`
@@ -71,7 +70,7 @@ const TableCell = styled.div`
 function Home() {
   const navigate = useNavigate();
 
-  const charityData = JSON.parse(localStorage.getItem('charities')) || [];
+  const charityData = JSON.parse(localStorage.getItem("charities")) || [];
 
   const handleRowClick = (row) => {
     // Adjust based on how row data is structured
@@ -98,7 +97,10 @@ function Home() {
         </DonationSection>
       </MainContent>
       <Footer>
-        <p>&copy; 2023 Donate for a Cause. All rights reserved.</p>
+        <p>
+          &copy; {new Date().getFullYear()} Donate for a Cause. All rights
+          reserved.
+        </p>
       </Footer>
     </AppContainer>
   );
