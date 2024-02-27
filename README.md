@@ -15,7 +15,7 @@
 - node server.js
 - go to the website http://localhost:3000
 - on the login page enter the account: HowAreYou
-- password
+- password: IAmFine
 
 ### How to Use
 
