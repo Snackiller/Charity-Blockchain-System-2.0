@@ -261,7 +261,7 @@ const contractABI = [
     constant: true,
   },
 ]; // abi from CharityFund.json file
-const contractAddress = "0x977F816C9b64A735eFF606Dc4184c9a894A8B474"; // address from deployed contract in Ganache
+const contractAddress = "0x1A4fcd9576A9e098FE5D56Aa9CaB517612468c64"; // address from deployed contract in Ganache
 
 // Initialization and setup
 const initWeb3 = async () => {
