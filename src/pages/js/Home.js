@@ -1,6 +1,8 @@
+import { Box } from '@chakra-ui/react';
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import NavBar from './NavBar';
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -78,31 +80,40 @@ function Home() {
   };
 
   return (
-    <AppContainer>
-      <MainContent>
-        <ByteCoinHeading>Charity Funds</ByteCoinHeading>
-        <DonationSection>
-          <TableContainer>
-            <TableRow isHeader>
-              <TableCell>Charity Name</TableCell>
-              <TableCell>Money Raised</TableCell>
-            </TableRow>
-            {charityData.map((charity, index) => (
-              <TableRow key={index} onClick={() => handleRowClick(charity)}>
-                <TableCell>{charity.name}</TableCell>
-                <TableCell>${charity.number}</TableCell>
+    <>
+      <Box
+        bgImage="url('/home_background.png')"
+        bgPosition="center"
+        bgRepeat="no-repeat"
+        bgSize="cover"
+        height="100vh"
+      >
+        <NavBar />
+        <MainContent>
+          <ByteCoinHeading>Charity Funds</ByteCoinHeading>
+          <DonationSection>
+            <TableContainer>
+              <TableRow isHeader>
+                <TableCell>Charity Name</TableCell>
+                <TableCell>Money Raised</TableCell>
               </TableRow>
-            ))}
-          </TableContainer>
-        </DonationSection>
-      </MainContent>
-      <Footer>
-        <p>
-          &copy; {new Date().getFullYear()} Donate for a Cause. All rights
-          reserved.
-        </p>
-      </Footer>
-    </AppContainer>
+              {charityData.map((charity, index) => (
+                <TableRow key={index} onClick={() => handleRowClick(charity)}>
+                  <TableCell>{charity.name}</TableCell>
+                  <TableCell>${charity.number}</TableCell>
+                </TableRow>
+              ))}
+            </TableContainer>
+          </DonationSection>
+        </MainContent>
+        <Footer>
+          <p>
+            &copy; {new Date().getFullYear()} Donate for a Cause. All rights
+            reserved.
+          </p>
+        </Footer>
+      </Box>
+    </>
   );
 }
 

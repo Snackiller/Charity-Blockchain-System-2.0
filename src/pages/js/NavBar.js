@@ -1,22 +1,44 @@
+import { Box, Link, Flex } from '@chakra-ui/react';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import '../css/NavBar.css';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 function NavBar() {
   const location = useLocation();
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
 
   return (
-    <div className="nav-bar">
-      <span>ByteCoin</span>
+    <Flex
+      as="nav"
+      align="center"
+      justify="space-between"
+      wrap="wrap"
+      padding="1.5rem"
+      bg="transparent" // Set the background to transparent
+      position="absolute" // Position it absolutely relative to its parent
+      top="0"
+      right="0"
+      left="0"
+      zIndex="10" // Higher index to ensure it's above the background image
+    >
+      <Box>
+        <Link as={RouterLink} to="/home">
+          ByteCoin
+        </Link>
+      </Box>
       {!isAuthPage && (
-        <div className="button-container">
-          <Link to="/home">Home</Link>
-          <Link to="/create">Create</Link>
-          <Link to="/logout">Logout</Link>
-        </div>
+        <Box display="flex" alignItems="center">
+          <Link as={RouterLink} to="/home" mx="2">
+            Home
+          </Link>
+          <Link as={RouterLink} to="/create" mx="2">
+            Create
+          </Link>
+          <Link as={RouterLink} to="/logout" mx="2">
+            Logout
+          </Link>
+        </Box>
       )}
-    </div>
+    </Flex>
   );
 }
 
