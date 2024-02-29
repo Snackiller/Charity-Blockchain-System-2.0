@@ -1,6 +1,7 @@
 import {
   Button,
   Box,
+  Divider,
   Flex,
   FormControl,
   Heading,
@@ -122,6 +123,11 @@ function Home() {
               </Text>
             </Box>
           </Flex>
+
+          <Divider />
+
+
+          <Divider />
           
           <MainContent>
             <ByteCoinHeading>Charity Funds</ByteCoinHeading>

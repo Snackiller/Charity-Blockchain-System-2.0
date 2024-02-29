@@ -50,7 +50,7 @@ function Login({ onLoginSuccess }) {
         <title>Login | Charity-Blockchain-System</title>
         <meta name="description" content="Login to the Charity Blockchain System" />
       </Helmet>
-  
+
       <Flex
         className={colorMode === "light" ? "auth-background" : ""}
         direction="column"
