@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Button,
   Box,
@@ -10,68 +11,23 @@ import {
   Text,
   useColorMode,
   Link as ChakraLink,
-} from "@chakra-ui/react";
-import React from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Container,
+  VStack
+} from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
-
-const MainContent = styled.main`
-  margin: 40px 0;
-  text-align: center;
-  width: 80%; /* Set the width of the content area */
-  max-width: 1200px; /* Set a maximum width if needed */
-  margin: auto; /* Center the content */
-`;
-
-const DonationSection = styled.section`
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const ByteCoinHeading = styled.h1`
-  margin-top: 0;
-  margin-bottom: 20px;
-`;
-
-const TotalRaised = styled.h2`
-  color: #4caf50;
-  margin-bottom: 10px;
-`;
-
-const TableContainer = styled.div`
-  width: 600%;
-  max-width: 1200px;
-  margin: 20px auto;
-  border: 1px solid #ddd;
-  border-collapse: collapse;
-  margin-top: 20px;
-  text-align: center;
-`;
-
-const TableRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #ddd;
-  padding: 15px;
-  background-color: ${(props) => (props.isHeader ? "#282c34" : "white")};
-  color: ${(props) => (props.isHeader ? "white" : "inherit")};
-  font-weight: ${(props) => (props.isHeader ? "bold" : "normal")};
-`;
-
-const TableCell = styled.div`
-  width: 5000%;
-  text-align: center;
-`;
 
 function Home() {
   const navigate = useNavigate();
   const charityData = JSON.parse(localStorage.getItem("charities")) || [];
 
   const handleRowClick = (row) => {
-    // Adjust based on how row data is structured
     navigate(`/donation/${row.name}`);
   };
 
@@ -87,8 +43,6 @@ function Home() {
         bgRepeat="no-repeat"
         bgSize="cover"
         position="relative"
-        // filter="brightness(0.8)"
-        // bg="gray.100"    // Good color if not using the image background
       >
         <Box
           position="absolute"
@@ -101,7 +55,7 @@ function Home() {
           zIndex={-1}
         />
 
-        <Box width="150vh">
+        <Container maxW="container.xl" mt={10}>
           <NavBar />
           <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="center" mt={28} p={5}>
             <Box flexShrink={0}>
@@ -111,12 +65,12 @@ function Home() {
                 borderRadius="lg"
                 objectFit="cover"
                 width={{ base: "100%", sm: "85%", md: "50%" }}
-                maxWidth={{ md: "700px" }}
+                maxWidth="700px"
                 height="auto"
               />
             </Box>
 
-            <Box p={5}>
+            <Box p={5} ml={-10}>
               <Text fontSize="2xl" fontWeight="bold" mb={2} color="gray.300">Our Mission</Text>
               <Text mb={2} fontSize="xl" color="gray.300">
                 Empowering generosity with Resilient DB: Transparent, secure, global giving made simple with ByteCoin.
@@ -126,23 +80,26 @@ function Home() {
 
           <Divider />
 
-
-          <Divider />
-          
-          <MainContent>
-            <ByteCoinHeading>Charity Funds</ByteCoinHeading>
-            <DonationSection>
-              <TableContainer>
+          <VStack spacing={4} my={10}>
+            <Heading as="h1" size="xl" color="whitesmoke">Charity Funds</Heading>
+            <Table variant="simple">
+              <Thead>
+                <Tr>
+                  <Th color="silver">Charity Name</Th>
+                  <Th isNumeric color="silver">Money Raised</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
                 {charityData.map((charity, index) => (
-                  <TableRow key={index} onClick={() => handleRowClick(charity)}>
-                    <TableCell>{charity.name}</TableCell>
-                    <TableCell>${charity.number}</TableCell>
-                  </TableRow>
+                  <Tr key={index} onClick={() => handleRowClick(charity)} cursor="pointer">
+                    <Td color="silver">{charity.name}</Td>
+                    <Td isNumeric color="silver">${charity.number}</Td>
+                  </Tr>
                 ))}
-              </TableContainer>
-            </DonationSection>
-          </MainContent>
-        </Box>
+              </Tbody>
+            </Table>
+          </VStack>
+        </Container>
 
         <Box
           as="footer"
@@ -151,12 +108,12 @@ function Home() {
           bg="#282c34"
           color="white"
           textAlign="center"
-          width="100%"
+          width="full"
         >
-          <p>
+          <Text>
             &copy; {new Date().getFullYear()} Donate for a Cause. All rights
             reserved.
-          </p>
+          </Text>
         </Box>
       </Flex>
     </>
