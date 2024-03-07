@@ -7,17 +7,13 @@ mutation{
   }
 `;
 
-export const POST_DONATION = (
-  donate_detail,
-  asset,
-  donate_amount
-) => `mutation {
+export const POST_DONATION = (metadata, asset) => `mutation {
     postTransaction(data: {
     operation: "CREATE",
-    amount: "${donate_amount}",
-    signerPublicKey: "${donate_detail?.signerPublicKey}",
-    signerPrivateKey: "${donate_detail?.signerPrivateKey}",
-    recipientPublicKey: "recipientPublicKey", // fixed one recipient
+    amount: 1,
+    signerPublicKey: "${metadata?.signerPublicKey}",
+    signerPrivateKey: "${metadata?.signerPrivateKey}",
+    recipientPublicKey: "${metadata?.recipientPublicKey}", // fixed one recipient
     asset: """{
       "data": ${asset},    
     }
@@ -29,10 +25,15 @@ export const POST_DONATION = (
 
 // filter based on "signerPublicKey, recipientPublicKey"
 export const FETCH_DONATION = (signerPublicKey, recipientPublicKey) => `query { 
-    getSpecificDonation(filter: {
+  getFilteredTransactions(filter: {
     ownerPublicKey:"${signerPublicKey}"
     recipientPublicKey:"${recipientPublicKey}"
     }){
-    asset
+      id
+      amount
+      asset
     }
   }`;
+
+// assume id is the key, amount is the donate amount
+// asset is the descrpition of the donation event

@@ -10,7 +10,7 @@ export const sendRequest = async (query) => {
   const data = {
     query: query,
   };
-  // TODO: Adding the path to env
+
   const response = await axios.post(
     "https://cloud.resilientdb.com/graphql",
     data,
