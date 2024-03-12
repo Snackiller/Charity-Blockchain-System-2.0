@@ -1,3 +1,4 @@
+// this is the only way can can generate key
 export const GENERATE_KEYS = `
 mutation{
     generateKeys{
@@ -6,7 +7,7 @@ mutation{
     }
   }
 `;
-
+// this is the only way we can postTransaction
 export const POST_DONATION = (metadata, asset) => `mutation {
     postTransaction(data: {
     operation: "CREATE",
@@ -29,11 +30,20 @@ export const FETCH_DONATION = (signerPublicKey, recipientPublicKey) => `query {
     ownerPublicKey:"${signerPublicKey}"
     recipientPublicKey:"${recipientPublicKey}"
     }){
+      metadata
+      operation
       id
+      version
       amount
+      uri
+      type
       asset
+      publicKey
+      
     }
   }`;
 
-// assume id is the key, amount is the donate amount
-// asset is the descrpition of the donation event
+// transaction id
+// donate title
+// donate amount
+// donate detail
