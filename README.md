@@ -15,8 +15,8 @@
   
 - cd server
 - node server.js
+- open a new terminal
 - npm start
-
 - go to the website http://localhost:3000
 - on the login page enter the account: HowAreYou
 - password: IAmFine
