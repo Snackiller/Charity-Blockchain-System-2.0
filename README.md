@@ -12,11 +12,9 @@
 
 - npm install
 - npm install @chakra-ui/react
-
-- go to the directory name: Charity BlockchainSystem
+  
 - cd server
 - node server.js
-
 - npm start
 
 - go to the website http://localhost:3000
