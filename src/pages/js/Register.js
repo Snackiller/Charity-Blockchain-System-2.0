@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../css/Register.css';
 
+// Register functional component definition
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  // Function to handle the registration form submission
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      // Send a POST request to the server to register a new user
       const response = await fetch('/register', {
         method: 'POST',
         headers: {
@@ -28,6 +31,7 @@ function Register() {
     }
   };
 
+  // Return statement of the Register component
   return (
     <div className="register-container">
       <h2>Register</h2>

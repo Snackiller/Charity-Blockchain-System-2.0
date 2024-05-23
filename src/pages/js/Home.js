@@ -1,32 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  Button,
-  Box,
-  Divider,
-  Flex,
-  FormControl,
-  Heading,
-  Image,
-  Input,
-  Text,
-  useColorMode,
-  Link as ChakraLink,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Container,
-  VStack,
+  Box, Button, Container, Divider, Flex,FormControl,  Heading, Image, Input, Link as ChakraLink,
+  Table, Tbody, Td, Text, Th, Thead, Tr, VStack, useColorMode
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 
+
 function Home() {
-  const navigate = useNavigate();
+  const navigate = useNavigate();// Hook to programmatically navigate
   const charityData = JSON.parse(localStorage.getItem("charities")) || [];
 
+  // Function to handle row clicks, navigating
   const handleRowClick = (row) => {
     navigate(`/donation/${row.name}`);
   };

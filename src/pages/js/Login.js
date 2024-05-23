@@ -1,28 +1,27 @@
 import {
-  Button,
-  Flex,
-  FormControl,
-  Heading,
-  Image,
-  Input,
-  Text,
-  useColorMode,
-  Link as ChakraLink,
+  Box, Button, Container, Divider, Flex,FormControl,  Heading, Image, Input, Link as ChakraLink,
+  Table, Tbody, Td, Text, Th, Thead, Tr, VStack, useColorMode
 } from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../css/Login.css';
 import { Link as RouterLink } from 'react-router-dom';
+
+// Login functional component with props
 function Login({ onLoginSuccess }) {
+
+  // State hooks for username and password
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { colorMode } = useColorMode();
 
+  // Function to handle form submission
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Send POST request to server with username and password
       const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
@@ -43,7 +42,7 @@ function Login({ onLoginSuccess }) {
     }
   };
 
-
+  // Component return: UI elements wrapped in a React fragment
   return (
     <>
       <Helmet>
