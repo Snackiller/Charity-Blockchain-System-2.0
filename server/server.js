@@ -13,25 +13,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve index.html for the login page
 app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
-// Register route
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
     try {
-        // Read the existing users
         const users = JSON.parse(await fs.promises.readFile('users.json', 'utf8'));
 
-        // Check if the username already exists
         if (users[username]) {
             return res.status(400).send('Username already exists');
         }
 
-        // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Save the new user
         users[username] = hashedPassword;
         await fs.promises.writeFile('users.json', JSON.stringify(users, null, 2));
 
@@ -42,21 +36,17 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// Login route
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     console.log(req.body);
 
     try {
-        // Read the existing users
         const users = JSON.parse(fs.readFileSync('users.json', 'utf8'));
 
-        // Check if the user exists
         if (!users[username]) {
             return res.status(401).send('User does not exist');
         }
 
-        // Compare the password with the hashed password
         const match = await bcrypt.compare(password, users[username]);
         if (match) {
             res.send('Login successful');
