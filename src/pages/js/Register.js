@@ -9,19 +9,29 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    // Basic input validation
+    if (username.trim() === '' || password.trim() === '') {
+      console.log('Username and password cannot be empty');
+      return;
+    }
+
     try {
-      const response = await fetch('/register', {
+      const response = await fetch('http://localhost:3000/register', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password }),
       });
+
       if (response.ok) {
-        console.log('Registration successful');
+        const data = await response.text();
+        console.log('Registration successful:', data);
         navigate('/login');
       } else {
-        console.log('Registration failed');
+        const errorData = await response.text();
+        console.log('Registration failed with message:', errorData);
       }
     } catch (error) {
       console.error('Registration error:', error);
