@@ -10,7 +10,6 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    // Basic input validation
     if (username.trim() === '' || password.trim() === '') {
       console.log('Username and password cannot be empty');
       return;
