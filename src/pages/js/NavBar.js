@@ -40,6 +40,9 @@ function NavBar() {
           <Link onClick={() => handleNavigate('/create')} mx="2" cursor="pointer" color="blue.400">
             Create
           </Link>
+          <Link onClick={() => handleNavigate('/forum')} mx="2" cursor="pointer" color="blue.400">
+            Forum
+          </Link>
           <Link onClick={() => handleNavigate('/profile')} mx="2" cursor="pointer" color="blue.400">
             Profile
           </Link>  
