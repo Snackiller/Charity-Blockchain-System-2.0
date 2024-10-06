@@ -98,7 +98,7 @@ function Home() {
                 <Tr>
                   <Th color="silver">Charity Name</Th>
                   <Th isNumeric color="silver">
-                    Money Raised
+                    Funds Needed
                   </Th>
                 </Tr>
               </Thead>
@@ -111,7 +111,7 @@ function Home() {
                   >
                     <Td color="silver">{charity.name}</Td>
                     <Td isNumeric color="silver">
-                      ${charity.number}
+                      ${charity.funds_needed}
                     </Td>
                   </Tr>
                 ))}
