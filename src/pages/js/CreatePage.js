@@ -20,22 +20,24 @@ import {
 function CreatePage() {
   const [charityInfo, setCharityInfo] = useState({
     name: "",
-    charityamount: 0,
+    funds_needed: 0,
     description: "",
   });
 
   useEffect(() => {
+    console.log("Fetching keys");
     const fetchKeys = async () => {
       try {
         // Generate user keys
+        console.log("Generating Signer's keys");
         const userKeyPair = await generateKeys();
         const userKeys = {
           publicKey: userKeyPair.generateKeys.publicKey,
           privateKey: userKeyPair.generateKeys.privateKey,
         };
         setUserKeys(userKeys);
-
-        // Generate admin keys
+        
+        console.log("Generating admin keys");
         const adminKeyPair = await generateKeys();
         const adminKeys = {
           publicKey: adminKeyPair.generateKeys.publicKey,
@@ -49,10 +51,13 @@ function CreatePage() {
     fetchKeys();
   }, []);
 
+
+
+
   const createCharity = async () => {
     if (
       !charityInfo.name ||
-      !charityInfo.charityamount ||
+      !charityInfo.funds_needed ||
       !charityInfo.description
     ) {
       alert("Please fill all the fields");
@@ -68,28 +73,51 @@ function CreatePage() {
       if (!adminKeys.publicKey) {
         throw new Error("Admin public key is not defined");
       }
+      console.log("Checking key");
+      // check key
+      // const recipientPublicKey = process.env.REACT_APP_ADMIN_PUBLIC_KEY;
+      // if (!recipientPublicKey) {
+      //   throw new Error("REACT_APP_ADMIN_PUBLIC_KEY is not defined");
+      // }
+      // const recipientPublicKey = process.env.REACT_APP_ADMIN_PUBLIC_KEY;
+      // console.log("key+++++", recipientPublicKey);
 
+      console.log("Creating metadata");
       const metadata = {
         signerPublicKey: userKeys.publicKey,
         signerPrivateKey: userKeys.privateKey,
         recipientPublicKey: adminKeys.publicKey,
       };
 
+      console.log("Creating asset");
       const asset = {
         name: charityInfo.name,
-        charityamount: charityInfo.charityamount,
+        funds_needed: charityInfo.funds_needed,
         description: charityInfo.description,
       };
 
       console.log("Metadata:", metadata);
       console.log("Asset:", asset);
 
+      console.log("Posting transaction");
       const result = await postTransaction(metadata, asset);
       console.log("Result:", result);
+      console.log("Storing keys in local storage");
+
+      const existingCharities = JSON.parse(localStorage.getItem('charities')) || [];
+      existingCharities.push(charityInfo);
+      localStorage.setItem('charities', JSON.stringify(existingCharities));
+      if (localStorage.length > 0) {
+        console.log("Local storage is not empty:");
+        console.log(localStorage);
+      } else {
+        console.log("Local storage is empty");
+      }
+      
 
       if (result) {
         console.log("Charity created successfully", result);
-        setCharityInfo({ name: "", charityamount: 0, description: "" });
+        setCharityInfo({ name: "", funds_needed: 0, description: "" });
         alert("Charity fund created successfully!");
       } else {
         console.log("No result received from postTransaction");
@@ -122,8 +150,8 @@ function CreatePage() {
             placeholder="Funds to be raised"
             min="1"
             step="1"
-            value={charityInfo.charityamount}
-            onChange={(e) => handleInputChange("charityamount", e.target.value)}
+            value={charityInfo.funds_needed}
+            onChange={(e) => handleInputChange("funds_needed", e.target.value)}
           />
           <FormLabel mt={4}>Description</FormLabel>
           <Textarea
