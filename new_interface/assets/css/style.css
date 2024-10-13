@@ -1,0 +1,200 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* Wrapper */
+#wrapper {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Header */
+header#header {
+    background: #2a2a2a;
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+header#header .logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Navigation */
+nav#nav {
+    display: flex;
+    justify-content: space-around;
+    background: #333;
+    padding: 1rem;
+}
+
+nav#nav .links li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+nav#nav .links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+nav#nav .icons li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+nav#nav .icons a {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+/* Intro Section */
+#intro {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #444;
+    color: #fff;
+}
+
+#intro h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+#intro p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+#intro .actions .button {
+    margin-top: 1.5rem;
+    padding: 0.7rem 2rem;
+    background: #e54b4b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Main Content */
+#main {
+    padding: 3rem 1rem;
+}
+
+.post.featured {
+    background: #e2e2e2;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post.featured header {
+    text-align: center;
+}
+
+.post.featured h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.post.featured p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.post.featured .actions .button {
+    background: #e54b4b;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.posts article {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.posts article h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.posts article p {
+    color: #666;
+}
+
+.posts article .actions .button {
+    background: #5b7cfa;
+    color: #fff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+footer#footer {
+    background: #333;
+    color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+footer#footer h3 {
+    color: #e5e5e5;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+footer#footer .icons a {
+    color: #fff;
+    margin: 0 0.5rem;
+    font-size: 1.4rem;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.pagination .page, .pagination .previous, .pagination .next {
+    display: inline-block;
+    padding: 0.5rem 0.8rem;
+    margin: 0 0.3rem;
+    background: #e54b4b;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.pagination .page.active {
+    background: #444;
+}
